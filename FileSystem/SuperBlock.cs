@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Hardware;
 namespace FileSystem
 {
@@ -86,12 +86,13 @@ namespace FileSystem
             {
                 if (!boolFreeBlockCount)
                 {
+
                     boolFreeBlockCount = true;
                     byte[] buffer = new byte[4];
                     HDD.Read(ref buffer, 16);
                     while (!HDD.isNullReadHandler()) ;
 
-                    blockStart = BitConverter.ToInt32(buffer, 0);
+                    freeBlocksCount = BitConverter.ToInt32(buffer, 0);
                 }
                 return freeBlocksCount;
             }
@@ -227,7 +228,7 @@ namespace FileSystem
         }
 
         //root
-        private static int root = -1;// 1024*128  +(1032*128 + (4096*1024*128 ))
+        private static int root = -1; // 1024*128  +(1032*128 + (4096*1024*128 ))
         public static int Root
         {
             get
@@ -244,7 +245,22 @@ namespace FileSystem
             }
         }
 
-        public static int InodeTableStart;
+        public static int inodeTableStart = -1;// 4 + 1024*128  +(1032*128 + (4096*1024*128 ))
+        public static int InodeTableStart
+        {
+            get
+            {
+                if (inodeTableStart == -1)
+                {
+                    byte[] buffer = new byte[4];
+                    HDD.Read(ref buffer, 48);
+                    while (!HDD.isNullReadHandler()) ;
+
+                    inodeTableStart = BitConverter.ToInt32(buffer, 0);
+                }
+                return inodeTableStart;
+            }
+        }
     }
 
 
