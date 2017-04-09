@@ -15,7 +15,7 @@ namespace FileSystem
             if (ID == 255)
             {
                 fileID = InodeTable.GetID();
-                Console.WriteLine(fileID);
+                //Console.WriteLine(fileID);
             }
             else fileID = ID;
         }
