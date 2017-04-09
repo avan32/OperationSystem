@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Hardware;
 namespace FileSystem
 {
@@ -245,7 +245,7 @@ namespace FileSystem
             }
         }
 
-        public static int inodeTableStart = -1;// 4 + 1024*128  +(4102*128 + (4096*1024*128 )) 
+        private static int inodeTableStart = -1;// 4 + 1024*128  +(4102*128 + (4096*1024*128 )) 
         public static int InodeTableStart
         {
             get
@@ -259,6 +259,24 @@ namespace FileSystem
                     inodeTableStart = BitConverter.ToInt32(buffer, 0);
                 }
                 return inodeTableStart;
+            }
+        }
+
+
+        private static int inodetableSize = -1;//128 + 4 + 1024*128  +(4102*128 + (4096*1024*128 ))
+        public static int InodetableSize
+        {
+            get
+            {
+                if (inodetableSize == -1)
+                {
+                    byte[] buffer = new byte[4];
+                    HDD.Read(ref buffer, 52);
+                    while (!HDD.isNullReadHandler()) ;
+
+                    inodetableSize = BitConverter.ToInt32(buffer, 0);
+                }
+                return inodetableSize;
             }
         }
     }
