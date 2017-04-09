@@ -8,123 +8,84 @@ namespace Example
         public static void Main(string[] args)
         {
 
-           
-            Inode i = new Inode(18);
 
-      
-            //byte[] b = System.Text.Encoding.ASCII.GetBytes("lalalala");
-            //HDD.Write( b, SuperBlock.BlockStart + 1 * SuperBlock.BlockSize);
 
-            //byte[] buffer = BitConverter.GetBytes(4096);//blockSize
-            //HDD.Write(buffer, 0);
-            //while (!HDD.isNullWriteHandler()) ;
+            //Inode i = new Inode();
+            Inode f = new Inode(1);
+            //f.SetArrayBlock(0, 3);
+            int i = f.GetArrayBlock(0);
+            byte[] b = new byte ["fooooooo".Length];
+            HDD.Read(ref b, SuperBlock.BlockSize * i + SuperBlock.BlockStart);
 
-            //buffer = BitConverter.GetBytes(1024);//blockCountInInodes
-            //HDD.Write(buffer, 4);
-            //while (!HDD.isNullWriteHandler()) ;
+            while (!HDD.isNullReadHandler()) ;
+            string s = System.Text.Encoding.ASCII.GetString(b);
+            Console.WriteLine(s);
+           // HDD.Write(b, SuperBlock.BlockSize * 3 + SuperBlock.BlockStart);
 
-            //buffer = BitConverter.GetBytes(1024*128);//maxBlocks
-            //HDD.Write(buffer, 8);
-            //while (!HDD.isNullWriteHandler()) ;
 
-            //buffer = BitConverter.GetBytes(0);//blockStart
-            //HDD.Write(buffer, 12);
-            //while (!HDD.isNullWriteHandler()) ;
 
-            //buffer = BitConverter.GetBytes(1024 * 128 - 1);//freeBlocksCount
-            //HDD.Write(buffer, 16);
-            //while (!HDD.isNullWriteHandler()) ;
-
-            //buffer = BitConverter.GetBytes(4096 * 128 * 1024);//inodeStart
-            //HDD.Write(buffer, 20);
-            //while (!HDD.isNullWriteHandler()) ;
-
-            //buffer = BitConverter.GetBytes(128);//maxInodesCount
-            //HDD.Write(buffer, 24);
-            //while (!HDD.isNullWriteHandler()) ;
-
-            //buffer = BitConverter.GetBytes(0);//currentInodesCount
-            //HDD.Write(buffer, 28);
-            //while (!HDD.isNullWriteHandler()) ;
-
-            //buffer = BitConverter.GetBytes(4102);//inodeSize
-            //HDD.Write(buffer, 32);
-            //while (!HDD.isNullWriteHandler()) ;
-
-            //buffer = BitConverter.GetBytes(1024 * 128);//freeSpaceMgmtSize
-            //HDD.Write(buffer, 40);
-            //while (!HDD.isNullWriteHandler()) ;
-
-            //buffer = BitConverter.GetBytes(4102 * 128 + (4096 * 1024 * 128));//freeSpaceMgmtStart
-            //HDD.Write(buffer, 36);
-            //while (!HDD.isNullWriteHandler()) ;
-
-            //buffer = BitConverter.GetBytes(1024 * 128 + (4102 * 128 + (4096 * 1024 * 128)));//root
-            //HDD.Write(buffer, 44);
-            //while (!HDD.isNullWriteHandler()) ;
-
-            //buffer = BitConverter.GetBytes(1024 * 128 + (4102 * 128 + (4096 * 1024 * 128)));//inodeTableStart
-            //HDD.Write(buffer, 48);
-            //while (!HDD.isNullWriteHandler()) ;
 
         }
     }
 }
 
 
-//-------------------instal
-//byte[] buffer = BitConverter.GetBytes(4096);//blockSize
-//HDD.Write(buffer, 0);
-//while (!HDD.isNullWriteHandler()) ;
+////-------------------instal
+//            byte[] buffer = BitConverter.GetBytes(4096);//blockSize
+//            HDD.Write(buffer, 0);
+//            while (!HDD.isNullWriteHandler()) ;
 
-//buffer = BitConverter.GetBytes(1024);//blockCountInInodes
-//HDD.Write(buffer, 4);
-//while (!HDD.isNullWriteHandler()) ;
+//            buffer = BitConverter.GetBytes(1024);//blockCountInInodes
+//            HDD.Write(buffer, 4);
+//            while (!HDD.isNullWriteHandler()) ;
 
-//buffer = BitConverter.GetBytes(1024*128);//maxBlocks
-//HDD.Write(buffer, 8);
-//while (!HDD.isNullWriteHandler()) ;
+//            buffer = BitConverter.GetBytes(1024 * 128);//maxBlocks
+//            HDD.Write(buffer, 8);
+//            while (!HDD.isNullWriteHandler()) ;
 
-//buffer = BitConverter.GetBytes(0);//blockStart
-//HDD.Write(buffer, 12);
-//while (!HDD.isNullWriteHandler()) ;
+//            buffer = BitConverter.GetBytes(0);//blockStart
+//            HDD.Write(buffer, 12);
+//            while (!HDD.isNullWriteHandler()) ;
 
-//buffer = BitConverter.GetBytes(1024 * 128 - 1);//freeBlocksCount
-//HDD.Write(buffer, 16);
-//while (!HDD.isNullWriteHandler()) ;
+//            buffer = BitConverter.GetBytes(1024 * 128 - 1);//freeBlocksCount
+//            HDD.Write(buffer, 16);
+//            while (!HDD.isNullWriteHandler()) ;
 
-//buffer = BitConverter.GetBytes(4096 * 128 * 1024);//inodeStart
-//HDD.Write(buffer, 20);
-//while (!HDD.isNullWriteHandler()) ;
+//            buffer = BitConverter.GetBytes(4096 * 128 * 1024);//inodeStart
+//            HDD.Write(buffer, 20);
+//            while (!HDD.isNullWriteHandler()) ;
 
-//buffer = BitConverter.GetBytes(128);//maxInodesCount
-//HDD.Write(buffer, 24);
-//while (!HDD.isNullWriteHandler()) ;
+//            buffer = BitConverter.GetBytes(128);//maxInodesCount
+//            HDD.Write(buffer, 24);
+//            while (!HDD.isNullWriteHandler()) ;
 
-//buffer = BitConverter.GetBytes(0);//currentInodesCount
-//HDD.Write(buffer, 28);
-//while (!HDD.isNullWriteHandler()) ;
+//            buffer = BitConverter.GetBytes(0);//currentInodesCount
+//            HDD.Write(buffer, 28);
+//            while (!HDD.isNullWriteHandler()) ;
 
-//buffer = BitConverter.GetBytes(4102);//inodeSize
-//HDD.Write(buffer, 32);
-//while (!HDD.isNullWriteHandler()) ;
+//            buffer = BitConverter.GetBytes(4102);//inodeSize
+//            HDD.Write(buffer, 32);
+//            while (!HDD.isNullWriteHandler()) ;
 
-//buffer = BitConverter.GetBytes(1024 * 128);//freeSpaceMgmtSize
-//HDD.Write(buffer, 40);
-//while (!HDD.isNullWriteHandler()) ;
+//            buffer = BitConverter.GetBytes(4102 * 128 + (4096 * 1024 * 128));//freeSpaceMgmtStart
+//            HDD.Write(buffer, 36);
+//            while (!HDD.isNullWriteHandler()) ;
 
-//buffer = BitConverter.GetBytes(4102 * 128 + (4096 * 1024 * 128));//freeSpaceMgmtStart
-//HDD.Write(buffer, 36);
-//while (!HDD.isNullWriteHandler()) ;
+//            buffer = BitConverter.GetBytes(1024 * 128);//freeSpaceMgmtSize
+//            HDD.Write(buffer, 40);
+//            while (!HDD.isNullWriteHandler()) ;
 
-//buffer = BitConverter.GetBytes(1024 * 128 + (4102 * 128 + (4096 * 1024 * 128)));//root
-//HDD.Write(buffer, 44);
-//while (!HDD.isNullWriteHandler()) ;
+//            buffer = BitConverter.GetBytes(1024 * 128 + (4102 * 128 + (4096 * 1024 * 128)));//root
+//            HDD.Write(buffer, 44);
+//            while (!HDD.isNullWriteHandler()) ;
 
-//buffer = BitConverter.GetBytes(1024 * 128 + (4102 * 128 + (4096 * 1024 * 128)));//inodeTableStart
-//HDD.Write(buffer, 48);
-//while (!HDD.isNullWriteHandler()) ;
+//            buffer = BitConverter.GetBytes(4 + 1024 * 128 + (4102 * 128 + (4096 * 1024 * 128)));//inodeTableStart
+//            HDD.Write(buffer, 48);
+//            while (!HDD.isNullWriteHandler()) ;
 
+//            buffer = BitConverter.GetBytes(128 + 4 + 1024 * 128 + (4102 * 128 + (4096 * 1024 * 128)));//inodeTableStart
+//            HDD.Write(buffer, 52);
+//            while (!HDD.isNullWriteHandler()) ;
 
 
 //--------------------test
