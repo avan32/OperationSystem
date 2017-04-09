@@ -1,0 +1,1 @@
+from HDD.txt file must be 560 mb size
