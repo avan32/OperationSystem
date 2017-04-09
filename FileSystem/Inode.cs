@@ -38,13 +38,15 @@ namespace FileSystem
 
         private byte fileID;
 
-        private int blockCount = -1;
+        private int blockCount;//= -1;
+        private bool boolBlockCount = false;
         public int BlockCount
         {
             get
             {
-                if (blockCount == -1)
+                if (!boolBlockCount)
                 {
+                    boolBlockCount = true;
                     byte[] buffer = new byte[4];
                     HDD.Read(ref buffer, SuperBlock.InodeStart + fileID * SuperBlock.InodeSize + 4096);
                     while (!HDD.isNullReadHandler()) ;
@@ -55,6 +57,7 @@ namespace FileSystem
             }
             set
             {
+                boolBlockCount = false;
                 byte[] buffer = new byte[4];
                 buffer = BitConverter.GetBytes(value);
                 HDD.Write(buffer, SuperBlock.InodeStart + fileID * SuperBlock.InodeSize + 4096);
